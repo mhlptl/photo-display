@@ -1,7 +1,13 @@
-import React from 'react';
+import React from "react";
+import Container from "react-bootstrap/Container";
+import PhotoUpload from "./components/PhotoUpload";
 
 function App(): JSX.Element {
-	return <h1 id='text'>Hello world!</h1>
+	return (
+		<Container>
+			<PhotoUpload />
+		</Container>
+	);
 }
 
 export default App;
