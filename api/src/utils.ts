@@ -1,9 +1,9 @@
 import multer from 'multer';
 import {extname} from 'path';
-import fs from 'fs/promises';
+import {pool} from './database';
 
 interface FileData {
-	files: string[]
+	filename: string
 }
 
 const storage: multer.StorageEngine = multer.diskStorage({
@@ -24,27 +24,32 @@ const fileFilter = (req: Express.Request, file: Express.Multer.File, callback: m
 	}
 };
 
-const openFile = async(): Promise<FileData> => {
-	const rawData = await fs.readFile(__dirname + '/files.json');
-	const data: FileData = JSON.parse(rawData.toString());
-	return data;
+const getRandomFile = async(): Promise<string | undefined> => {
+	const client = await pool.connect();
+	try {
+		const res = await client.query('SELECT filename FROM photos ORDER BY random() LIMIT 1;');
+		const current: FileData = res.rows[0];
+		return current.filename;
+	}
+	catch(e) {
+		console.error((e as Error).message);
+	}
+	finally {
+		client.release();
+	}
 }
 
-const saveJSON = async(data: FileData) => {
-	fs.writeFile(__dirname + '/files.json', JSON.stringify(data), 'utf-8');
-}
-
-const getRandomFile = async(): Promise<string> => {
-	const data = await openFile();
-	const numFiles = data.files.length;
-	return data.files[Math.floor(Math.random() * numFiles)];
-}
-
-const addFile = async(path: string): Promise<FileData> => {
-	const data = await openFile();
-	data.files.push(path);
-	saveJSON(data);
-	return data;
+const addFile = async(filename: string): Promise<void> => {
+	const client = await pool.connect();
+	try {
+		await client.query('INSERT INTO photos(filename) VALUES($1);', [filename]);
+	}
+	catch(e) {
+		console.error((e as Error).message);
+	}
+	finally {
+		client.release();
+	}
 }
 
 export {storage, fileFilter, addFile, getRandomFile};
