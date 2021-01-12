@@ -2,7 +2,6 @@ import express from 'express';
 import multer from 'multer';
 import {storage, fileFilter, addFile, getRandomFile} from '../utils';
 import * as path from 'path'
-import e from 'express';
 
 const router : express.Router = express.Router();
 
