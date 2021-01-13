@@ -38,7 +38,8 @@ const getRandomFile = async (): Promise<string | undefined> => {
 		const current: FileData = res.rows[0];
 		return current.filename;
 	} catch (e) {
-		console.error(e as Error.message);
+		// eslint-disable-next-line no-extra-parens
+		console.error((<Error>e).message);
 	} finally {
 		client.release();
 	}
@@ -49,7 +50,8 @@ const addFile = async (filename: string): Promise<void> => {
 	try {
 		await client.query("INSERT INTO photos(filename) VALUES($1);", [filename]);
 	} catch (e) {
-		console.error(e as Error.message);
+		// eslint-disable-next-line no-extra-parens
+		console.error((<Error>e).message);
 	} finally {
 		client.release();
 	}
