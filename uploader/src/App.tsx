@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import PhotoUpload from "./components/PhotoUpload";
 import {isImage} from "./utils";
 import Message from "./components/Message";
+import axios, { AxiosResponse } from "axios";
 
 function App(): JSX.Element {
 	const [file, setFile]: [File | null, (file: File | null) => void] = useState<File | null>(null);
@@ -16,8 +17,7 @@ function App(): JSX.Element {
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
 		if (isImage(file)) {
-			setMessage("Uploaded!");
-			setUploaded(true);
+			uploadFile();
 		} else {
 			setError(true);
 			setMessage("Error: Please try to upload again");
@@ -36,6 +36,19 @@ function App(): JSX.Element {
 		setMessage("");
 		setError(false);
 	};
+
+	const uploadFile = async(): Promise<void> => {
+		try {
+			const res: AxiosResponse = await axios.post('/photos/upload');
+			if(res.status === 201) {
+				setUploaded(true);
+			}
+		}
+		catch {
+			setError(true);
+			setMessage('Upload Failed. Please try again.');
+		}
+	}
 
 	const showForm = (): JSX.Element => {
 		if (uploaded) {
