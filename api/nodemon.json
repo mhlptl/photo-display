@@ -2,7 +2,7 @@
 	"restartable": "rs",
 	"ignore": ["node_modules/", "images/", "test/", "build/"],
 	"watch": ["src/"],
-	"execMap":  {
+	"execMap": {
 		"ts": "node -r ts-node/register -r dotenv/config"
 	},
 	"ext": "js,ts,json"
