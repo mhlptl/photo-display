@@ -10,6 +10,6 @@ describe("endpoint - /", () => {
 
 	test("POST - should respond with 404", async () => {
 		const res: request.Response = await request(app).post("/api/v1");
-		expect(res.status).toEqual(404);
+		expect(res.status).toEqual(405);
 	});
 });

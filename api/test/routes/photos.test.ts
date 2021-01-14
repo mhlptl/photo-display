@@ -25,7 +25,7 @@ describe("endpoint - /photos/upload", () => {
 		const res: request.Response = await request(app)
 			.post("/api/v1/photos/upload")
 			.attach("image", path.join(__dirname, "../", "testfiles/", "note.txt"));
-		expect(res.status).toEqual(404);
+		expect(res.status).toEqual(400);
 	});
 });
 
@@ -35,7 +35,7 @@ describe("endpoint - /photos/random", () => {
 		expect(res.status).toEqual(404);
 	});
 
-	test("POST - should respond with 201", async () => {
+	test("POST - should respond with 200", async () => {
 		const res: request.Response = await request(app).post("/api/v1/photos/random");
 		expect(res.status).toEqual(200);
 	});
