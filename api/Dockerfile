@@ -13,6 +13,7 @@ WORKDIR /usr/src/backend/
 COPY package*.json ./
 RUN npm ci --only=production
 COPY --from=prebuild /tmp/build ./build
+RUN mkdir ./images
 ENV PORT 8080
 EXPOSE 8080
 CMD ["node", "./build/server.js"]
