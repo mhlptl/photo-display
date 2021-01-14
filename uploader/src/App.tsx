@@ -38,8 +38,10 @@ function App(): JSX.Element {
 	};
 
 	const uploadFile = async(): Promise<void> => {
+		const data = new FormData();
+		data.append('image', file!);
 		try {
-			const res: AxiosResponse = await axios.post('/photos/upload');
+			const res: AxiosResponse = await axios.post('/photos/upload', data);
 			if(res.status === 201) {
 				setUploaded(true);
 			}

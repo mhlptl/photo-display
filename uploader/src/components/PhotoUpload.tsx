@@ -9,14 +9,14 @@ interface PhotoUploadProps {
 
 function PhotoUpload(props: PhotoUploadProps): JSX.Element {
 	return (
-		<Form onSubmit={props.handleSubmit}>
+		<Form onSubmit={props.handleSubmit} encType='multipart/form-data' >
 			<Form.Group className='form-label'>
 				<Form.File
 					accept='image/png, image/jpeg, image/gif'
 					label='Select Photo to Upload'
-					id='form-file'
+					id='image'
 					onChange={props.handleChange}
-					data-testid='form-file'
+					data-testid='image'
 					required
 				/>
 			</Form.Group>
