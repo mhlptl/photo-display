@@ -7,7 +7,7 @@ router.get("/", (req: express.Request, res: express.Response) => {
 });
 
 router.all("/", (req: express.Request, res: express.Response) => {
-	res.status(404).send("Route DNE");
+	res.status(405).send("Route DNE");
 });
 
 export default router;
