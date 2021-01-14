@@ -1,5 +1,5 @@
 import multer from "multer";
-import {extname} from "path";
+import {extname, resolve} from "path";
 import {pool} from "./database";
 
 interface FileData {
@@ -12,7 +12,7 @@ const storage: multer.StorageEngine = multer.diskStorage({
 		file: Express.Multer.File,
 		callback: (error: Error | null, destination: string) => void
 	) => {
-		callback(null, "images");
+		callback(null, resolve('images'));
 	},
 	filename: (
 		req: Express.Request,

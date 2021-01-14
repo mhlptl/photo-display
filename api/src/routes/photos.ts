@@ -21,7 +21,7 @@ router.post("/photos/random", async (req: express.Request, res: express.Response
 	if (file === undefined) {
 		res.status(204).json({message: "no filename found"});
 	} else {
-		res.sendFile(path.resolve(`images/${file}`));
+		res.sendFile(path.resolve('images', file));
 	}
 });
 
