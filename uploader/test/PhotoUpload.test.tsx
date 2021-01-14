@@ -36,7 +36,7 @@ describe("<PhotoUpload/>", () => {
 	});
 
 	test("attach image to form", () => {
-		const input: HTMLInputElement = utils.getByTestId("form-file") as HTMLInputElement;
+		const input: HTMLInputElement = utils.getByTestId("image") as HTMLInputElement;
 		const file = new File(["(⌐□_□)"], "file.png", {type: "image/png"});
 		fireEvent.change(input, {target: {files: [file]}});
 		expect(onChange).toBeCalledTimes(1);
