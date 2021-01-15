@@ -1,0 +1,11 @@
+node_modules/
+test/
+.dockerignore
+.eslintignore
+.eslintrc
+.gitignore
+.prettierignore
+.prettierrc
+.debug.log
+jest.config.js
+Dockerfile
