@@ -1,6 +1,8 @@
 import multer from "multer";
 import {extname, resolve} from "path";
 import {pool} from "./database";
+import {readFile} from 'fs/promises';
+import {lookup} from 'mime-types';
 
 interface FileData {
 	filename: string;
@@ -57,4 +59,10 @@ const addFile = async (filename: string): Promise<void> => {
 	}
 };
 
-export {storage, fileFilter, addFile, getRandomFile};
+const encode = async(filename: string): Promise<string> => {
+	const bitmap = await readFile(filename);
+	const type = lookup(filename);
+	return `data:${type};base64,${bitmap.toString('base64')}`;
+}
+
+export {storage, fileFilter, addFile, getRandomFile, encode};

@@ -16,3 +16,10 @@ body {
 .image {
 	height: 90%;
 }
+
+.back {
+	position: absolute;
+	height: 97.5%;
+	z-index: -1;
+	opacity: 20%;
+}
