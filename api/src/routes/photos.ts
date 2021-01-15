@@ -1,6 +1,6 @@
 import express from "express";
 import multer from "multer";
-import {storage, fileFilter, addFile, getRandomFile} from "../utils";
+import {storage, fileFilter, addFile, getRandomFile, encode} from "../utils";
 import * as path from "path";
 
 const router: express.Router = express.Router();
@@ -17,11 +17,19 @@ router.post("/photos/upload", upload.single("image"), async (req: express.Reques
 });
 
 router.post("/photos/random", async (req: express.Request, res: express.Response) => {
-	const file = await getRandomFile();
-	if (file === undefined) {
+	const filename = await getRandomFile();
+	if (filename === undefined) {
 		res.status(204).json({message: "no filename found"});
 	} else {
-		res.sendFile(path.resolve('images', file));
+		try {
+			const data = await encode(path.resolve('images', filename));
+			res.send({image: data});
+		}
+		catch(e) {
+			// eslint-disable-next-line no-extra-parens
+			console.error((<Error>e).message);
+			res.send(204);
+		}
 	}
 });
 
