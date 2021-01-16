@@ -1,13 +1,17 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require("path");
+const {resolve} = require("path");
 const {merge} = require("webpack-merge");
 const common = require("./webpack.common");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = merge(common, {
+	plugins: [
+		new Dotenv()
+	],
 	mode: "production",
 	devtool: "source-map",
 	output: {
 		filename: "[name].[contenthash].js",
-		path: path.resolve(__dirname, "dist")
+		path: resolve(__dirname, "dist")
 	}
 });
