@@ -1,9 +1,15 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require("path");
+const {resolve} = require("path");
 const {merge} = require("webpack-merge");
 const common = require("./webpack.common");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = merge(common, {
+	plugins: [
+		new Dotenv({
+			path: './.env.development'
+		})
+	],
 	mode: "development",
 	devtool: "inline-source-map",
 	devServer: {
@@ -13,6 +19,6 @@ module.exports = merge(common, {
 	},
 	output: {
 		filename: "[name].bundle.js",
-		path: path.resolve(__dirname, "dist")
+		path: resolve(__dirname, "dist")
 	}
 });
