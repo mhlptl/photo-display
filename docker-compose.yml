@@ -1,0 +1,46 @@
+version: '3'
+
+volumes: 
+  photodisplay-images:
+  photodisplay-db:
+  
+
+services: 
+  db:
+    container_name: photodisplay-db
+    image: postgres
+    environment: 
+      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_PASSWORD=${PGPASSWORD}
+      - POSTGRES_DB=photodisplay
+    volumes: 
+      - photodisplay-db:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+  api:
+    container_name: photodisplay-api
+    depends_on: 
+      - db
+    build: "./api"
+    environment: 
+      - PGUSER=${PGUSER}
+      - PGPASSWORD=${PGPASSWORD}
+      - PGDATABASE=photodisplay
+      - PGHOST=db
+    volumes: 
+      - photodisplay-images:/usr/src/backend/images
+  uploader:
+    container_name: photodisplay-uploader
+    depends_on: 
+     - api
+     - db
+    build: "./uploader"
+    ports: 
+      - 3000:80
+  viewer:
+    container_name: photodisplay-viewer
+    depends_on: 
+      - api
+      - db
+    build: "./viewer"
+    ports: 
+      - 3001:80
