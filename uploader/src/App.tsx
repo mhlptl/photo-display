@@ -41,7 +41,7 @@ function App(): JSX.Element {
 		const data = new FormData();
 		data.append('image', file!);
 		try {
-			const res: AxiosResponse = await axios.post('http://www.localhost:5000/api/v1/photos/upload	', data);
+			const res: AxiosResponse = await axios.post('http://localhost:5000/api/v1/photos/upload', data);
 			if(res.status === 201) {
 				setUploaded(true);
 				setMessage('Photo Uploaded!');

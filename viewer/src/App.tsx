@@ -17,7 +17,7 @@ function App(): JSX.Element {
 
 	const getLink = async(): Promise<void> => {
 		try {
-			const res = await axios.post('http://www.localhost:5000/api/v1/photos/random');
+			const res = await axios.post('http://localhost:5000/api/v1/photos/random');
 			setLink(res.data.image);
 		}
 		catch(e) {
