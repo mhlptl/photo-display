@@ -10,7 +10,7 @@ services:
     container_name: photodisplay-db
     image: postgres
     environment: 
-      - POSTGRES_USER=${PGUSER}
+      - POSTGRES_USER=photodisplay
       - POSTGRES_PASSWORD=${PGPASSWORD}
       - POSTGRES_DB=photodisplay
     volumes: 
@@ -24,9 +24,8 @@ services:
     ports:
       - 5000:5000
     environment: 
-      - PGUSER=${PGUSER}
+      - PGUSER=photodisplay
       - PGPASSWORD=${PGPASSWORD}
-      - PGDATABASE=photodisplay
       - PGHOST=db
     volumes: 
       - photodisplay-images:/usr/src/backend/images
