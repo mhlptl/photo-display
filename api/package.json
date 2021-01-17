@@ -5,8 +5,8 @@
 	"main": "./src/server.ts",
 	"private": true,
 	"scripts": {
-		"start": "tsc && node build/server.js",
-		"serverstart": "nodemon ./src/server.ts dotenv_config_path=.env.development",
+		"start": "tsc && node -r dotenv/config build/server.js dotenv_config_path=../.env.development",
+		"serverstart": "nodemon ./src/server.ts dotenv_config_path=../.env.development",
 		"test": "jest",
 		"lint": "eslint .",
 		"lint:fix": "eslint --fix .",
