@@ -65,4 +65,14 @@ const encode = async(filename: string): Promise<string> => {
 	return `data:${type};base64,${bitmap.toString('base64')}`;
 }
 
-export {storage, fileFilter, addFile, getRandomFile, encode};
+const createTable = async(): Promise<void> => {
+	try {
+		await pool.query("CREATE TABLE IF NOT EXISTS photos (filename varchar(50) NOT NULL);");
+	}
+	catch (e) {
+		// eslint-disable-next-line no-extra-parens
+		console.error((<Error>e).message);
+	}
+}
+
+export {storage, fileFilter, addFile, getRandomFile, encode, createTable};
