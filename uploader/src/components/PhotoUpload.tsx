@@ -7,6 +7,12 @@ interface PhotoUploadProps {
 	handleChange(T: FormEvent): void;
 }
 
+/**
+ * 
+ * form to upload image
+ * 
+ * @param props PhotoUploadProps
+ */
 function PhotoUpload(props: PhotoUploadProps): JSX.Element {
 	return (
 		<Form onSubmit={props.handleSubmit} encType='multipart/form-data' >

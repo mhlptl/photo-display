@@ -14,6 +14,13 @@ function App(): JSX.Element {
 	const [uploaded, setUploaded]: [boolean, (uploaded: boolean) => void] = useState<boolean>(false);
 	const [error, setError]: [boolean, (error: boolean) => void] = useState<boolean>(false);
 
+	/**
+	 * 
+	 * uploads image to server
+	 * if upload is not successful, returns error
+	 * 
+	 * @param e FormEvent
+	 */
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
 		if (isImage(file)) {
@@ -24,12 +31,23 @@ function App(): JSX.Element {
 		}
 	};
 
+
+	/**
+	 * 
+	 * sets state to new file when selected
+	 * 
+	 * @param e FormEvent
+	 */
 	const handleChange = (e: FormEvent) => {
 		const target: HTMLInputElement = e.target as HTMLInputElement;
 		setFile(target.files && target.files[0]);
 		setError(false);
 	};
 
+
+	/**
+	 * clears all errors and sets all states to default values
+	 */
 	const clear = (): void => {
 		setFile(null);
 		setUploaded(false);
@@ -37,6 +55,10 @@ function App(): JSX.Element {
 		setError(false);
 	};
 
+	/**
+	 * uploads image to server
+	 * uses FormData to send image as type form/data
+	 */
 	const uploadFile = async(): Promise<void> => {
 		const data = new FormData();
 		data.append('image', file!);
