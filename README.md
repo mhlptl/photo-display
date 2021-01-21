@@ -36,13 +36,19 @@ This project include the software which can allow you (the user) to create your 
 
 * If you are only making changes to the Uploader or Viewer, you can use Docker Compose to start the database and API. The Uploader and Viewer would need to use the webpack development server vs. a Docker Container to show changes via live reloading.
 
-* If this is the method you are using to start the API and database, please copy the .env.example to your .env. file and change the information that you want the database to use.
+* If this is the method you are using to start the API and database, please create a file names .env and set PGPASSWORD equal to a password that you want your database to have. An example of what the .env file would look like is below:
+
+    ```env
+    PGPASSWORD=postgres
+    ```
 
 * The following snippet will allow you to start the API and the database.
 
     ```docker
     docker-compose up db api
     ```
+
+* Please remember to clear your images folder and TRUNCATE the table afterwards if using this method
 
 ## Production
 
