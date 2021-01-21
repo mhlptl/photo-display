@@ -5,6 +5,12 @@ interface ViewerProps {
 	imageLink: string
 }
 
+/**
+ * 
+ * displays image in the center of the screen with a backdrop of the same image
+ * 
+ * @param props VieweProps
+ */
 function Viewer(props: ViewerProps): JSX.Element {
 	return (
 		<React.Fragment>

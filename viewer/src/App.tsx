@@ -6,6 +6,9 @@ import axios from 'axios';
 function App(): JSX.Element {
 	const [link, setLink]: [string, (link: string) => void] = useState<string>('');
 
+	/**
+	 * get new image every 5 seconds
+	 */
 	useEffect(() => {
 		getLink();
 		const intervalId = setInterval(getLink, 5000);
@@ -15,6 +18,9 @@ function App(): JSX.Element {
 	}, [])
 
 
+	/**
+	 * gets base64 encoding of the image from the server
+	 */
 	const getLink = async(): Promise<void> => {
 		try {
 			const res = await axios.post('http://localhost:5000/api/v1/photos/random');
