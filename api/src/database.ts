@@ -1,5 +1,9 @@
 import {Pool} from "pg";
 
+/**
+ * database connection
+ * can be overridden with environment variables
+ */
 const pool: Pool = new Pool({
 	user: process.env.PGUSER || 'postgres',
 	password: process.env.PGPASSWORD || 'postgres',

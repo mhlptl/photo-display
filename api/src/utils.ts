@@ -25,6 +25,14 @@ const storage: multer.StorageEngine = multer.diskStorage({
 	}
 });
 
+/**
+ * 
+ * checks if filetype is an accepted type
+ * 
+ * @param req Express Request
+ * @param file file from client
+ * @param callback callback function
+ */
 const fileFilter = (req: Express.Request, file: Express.Multer.File, callback: multer.FileFilterCallback): void => {
 	if (file.mimetype === "image/jpeg" || file.mimetype === "image/gif" || file.mimetype === "image/png") {
 		callback(null, true);
@@ -33,6 +41,10 @@ const fileFilter = (req: Express.Request, file: Express.Multer.File, callback: m
 	}
 };
 
+
+/**
+ * get random filename from database if one exists
+ */
 const getRandomFile = async (): Promise<string | undefined> => {
 	const client = await pool.connect();
 	try {
@@ -47,6 +59,12 @@ const getRandomFile = async (): Promise<string | undefined> => {
 	}
 };
 
+/**
+ * 
+ * stores filename in database for future query
+ * 
+ * @param filename name of image
+ */
 const addFile = async (filename: string): Promise<void> => {
 	const client = await pool.connect();
 	try {
@@ -59,12 +77,22 @@ const addFile = async (filename: string): Promise<void> => {
 	}
 };
 
+/**
+ * 
+ * encodes image to base64 to be sent to client
+ * 
+ * @param filename name of image
+ */
 const encode = async(filename: string): Promise<string> => {
 	const bitmap = await readFile(filename);
 	const type = lookup(filename);
 	return `data:${type};base64,${bitmap.toString('base64')}`;
 }
 
+/**
+ * creates table if not already created
+ * NOTE: only runs on server startup
+ */
 const createTable = async(): Promise<void> => {
 	try {
 		await pool.query("CREATE TABLE IF NOT EXISTS photos (filename varchar(50) NOT NULL);");

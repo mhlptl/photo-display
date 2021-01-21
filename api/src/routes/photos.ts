@@ -7,6 +7,10 @@ const router: express.Router = express.Router();
 
 const upload: multer.Multer = multer({storage: storage, fileFilter: fileFilter});
 
+/**
+ * client uploads image to server
+ * server saves image to filesystem and saves filename in database
+ */
 router.post("/photos/upload", upload.single("image"), async (req: express.Request, res: express.Response) => {
 	if (req.file === undefined) {
 		res.sendStatus(400).json({message: "error, please try again"});
@@ -16,6 +20,9 @@ router.post("/photos/upload", upload.single("image"), async (req: express.Reques
 	}
 });
 
+/**
+ * server sends image to client if an image exists
+ */
 router.post("/photos/random", async (req: express.Request, res: express.Response) => {
 	const filename = await getRandomFile();
 	if (filename === undefined) {
