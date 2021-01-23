@@ -14,7 +14,7 @@ interface ViewerProps {
 function Viewer(props: ViewerProps): JSX.Element {
 	return (
 		<React.Fragment>
-			<Image className='image' src={props.imageLink} fluid />
+			<Image className='image' src={props.imageLink} alt='no image available' fluid />
 			<Image className='back' src={props.imageLink} fluid />
 		</React.Fragment>
 	)
