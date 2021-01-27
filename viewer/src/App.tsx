@@ -11,7 +11,7 @@ function App(): JSX.Element {
 	 */
 	useEffect(() => {
 		getLink();
-		const intervalId = setInterval(getLink, 5000);
+		const intervalId = setInterval(getLink, 1500);
 		return () => {
 			clearInterval(intervalId);
 		}

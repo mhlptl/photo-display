@@ -103,4 +103,14 @@ const createTable = async(): Promise<void> => {
 	}
 }
 
-export {storage, fileFilter, addFile, getRandomFile, encode, createTable};
+const clearTable = async(): Promise<void> => {
+	try {
+		await pool.query("TRUNCATE photos;");
+	}
+	catch (e) {
+		// eslint-disable-next-line no-extra-parens
+		console.error((<Error>e).message);
+	}
+}
+
+export {storage, fileFilter, addFile, getRandomFile, encode, createTable, clearTable};

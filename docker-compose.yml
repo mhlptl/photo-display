@@ -15,12 +15,12 @@ services:
       - POSTGRES_DB=photodisplay
     volumes: 
       - photodisplay-db:/var/lib/postgresql/data
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
   api:
     container_name: photodisplay-api
     depends_on: 
       - db
     build: "./api"
+    image: pd_api
     ports:
       - 5000:5000
     environment: 
@@ -35,6 +35,7 @@ services:
      - api
      - db
     build: "./uploader"
+    image: pd_uploader
     ports: 
       - 3000:80
   viewer:
@@ -43,5 +44,6 @@ services:
       - api
       - db
     build: "./viewer"
+    image: pd-viewer
     ports: 
       - 3001:80

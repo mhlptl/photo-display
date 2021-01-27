@@ -1,5 +1,7 @@
 # Photo Display
 
+![Photo Display](./gifs/photodisplay.gif)
+
 This project include the software which can allow you (the user) to create your own electronic picture frame.
 
 ## Development
@@ -67,3 +69,17 @@ This project include the software which can allow you (the user) to create your 
   ```docker
   docker-compose down
   ```
+
+## Notes
+
+**Photos used for the demonstration were acquired from unsplash.**
+
+Photo Credits:
+
+- [Ante Samarzija](https://unsplash.com/@antesamarzija)
+- [Bluewater Globe](https://unsplash.com/@bluewaterglobe)
+- [Dave Pullis](https://unsplash.com/@davepullis)
+- [Jack Dong](https://unsplash.com/@lwdzl)
+- [Kristine Tanne](https://unsplash.com/@kristinetanne)
+- [Tamara Schipchinskaya](https://unsplash.com/@toma_sh)
+- [The Blowup](https://unsplash.com/@theblowup)
