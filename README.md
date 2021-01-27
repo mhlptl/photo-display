@@ -56,7 +56,7 @@ This project include the software which can allow you (the user) to create your 
 
 - _Docker and Docker Compose is required to the run the program with the following script._
 
-- Copy the contents of .env.example to .env.development and change the default values if you want to use different values when initializing your postgres database
+- Copy the contents of .env.example to .env and change the default values if you want to use different values when initializing your postgres database
 
 - To start the containers, run the following snippet while being in the same directory that docker-compose.yml is located.
 
