@@ -70,6 +70,16 @@ This project include the software which can allow you (the user) to create your 
   docker-compose down
   ```
 
+## TODO
+
+- Multiple file upload
+
+- File Cleanup/Refactoring
+
+- User Input Photo Refresh Time
+
+- Allow links to photos to be uploaded
+
 ## Notes
 
 **Photos used for the demonstration were acquired from unsplash.**
