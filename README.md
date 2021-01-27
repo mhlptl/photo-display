@@ -1,8 +1,10 @@
 # Photo Display
 
+This project include the software which can allow you (the user) to create your own electronic picture frame.
+
 ![Photo Display](./gifs/photodisplay.gif)
 
-This project include the software which can allow you (the user) to create your own electronic picture frame.
+- _Photo Timing is sped up for the demonstration_
 
 ## Development
 
