@@ -65,6 +65,7 @@ function App(): JSX.Element {
 		try {
 			const res: AxiosResponse = await axios.post('http://localhost:5000/api/v1/photos/upload', data);
 			if(res.status === 201) {
+				setError(false);
 				setUploaded(true);
 				setMessage('Photo Uploaded!');
 			}

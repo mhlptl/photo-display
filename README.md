@@ -34,40 +34,36 @@ This project include the software which can allow you (the user) to create your 
 
 ### Using Docker Compose
 
-* If you are only making changes to the Uploader or Viewer, you can use Docker Compose to start the database and API. The Uploader and Viewer would need to use the webpack development server vs. a Docker Container to show changes via live reloading.
+- If you are only making changes to the Uploader or Viewer, you can use Docker Compose to start the database and API. The Uploader and Viewer would need to use the webpack development server vs. a Docker Container to show changes via live reloading.
 
-* If this is the method you are using to start the API and database, please create a file names .env and set PGPASSWORD equal to a password that you want your database to have. An example of what the .env file would look like is below:
+- If this is the method you are using to start the API and database, copy the contents of .env.example to .env.development and change the default values if you want to use different values when initializing your postgres database
 
-    ```env
-    PGPASSWORD=postgres
-    ```
+- The following snippet will allow you to start the API and the database. _Note: run the following snippet in the same directory that docker-compose.yml is located_
 
-* The following snippet will allow you to start the API and the database.
+  ```docker
+  docker-compose --env-file ./.env.development up db api
+  ```
 
-    ```docker
-    docker-compose up db api
-    ```
+- To stop the containers, run the following snippet:
 
-* Please remember to clear your images folder and TRUNCATE the table afterwards if using this method
+  ```docker
+  docker-compose down
+  ```
 
 ## Production
 
-* *Docker and Docker Compose is required to the run the program with the following script.*
+- _Docker and Docker Compose is required to the run the program with the following script._
 
-* Create a file named .env and set PGPASSWORD equal to a password that you want your database to have. An example of what the .env file would look like is below:
+- Copy the contents of .env.example to .env.development and change the default values if you want to use different values when initializing your postgres database
 
-    ```env
-    PGPASSWORD=postgres
-    ```
+- To start the containers, run the following snippet while being in the same directory that docker-compose.yml is located.
 
-* To start the containers, run the following snippet while being in the same directory that docker-compose.yml is located.
+  ```docker
+  docker-compose up
+  ```
 
-    ```docker
-    docker-compose up
-    ```
+- To stop the containers, run the following snippet while being in the same directory that docker-compose.yml is located.
 
-* To stop the containers, run the following snippet while being in the same directory that docker-compose.yml is located.
-
-    ```docker
-    docker-compose down
-    ```
+  ```docker
+  docker-compose down
+  ```

@@ -13,10 +13,10 @@ const upload: multer.Multer = multer({storage: storage, fileFilter: fileFilter})
  */
 router.post("/photos/upload", upload.single("image"), async (req: express.Request, res: express.Response) => {
 	if (req.file === undefined) {
-		res.sendStatus(400).json({message: "error, please try again"});
+		res.status(400).json({message: "error, please try again"});
 	} else {
 		await addFile(req.file.filename);
-		res.sendStatus(201).json({message: "Photo Uploaded"});
+		res.status(201).json({message: "Photo Uploaded"});
 	}
 });
 
@@ -26,7 +26,7 @@ router.post("/photos/upload", upload.single("image"), async (req: express.Reques
 router.post("/photos/random", async (req: express.Request, res: express.Response) => {
 	const filename = await getRandomFile();
 	if (filename === undefined) {
-		res.sendStatus(204).json({message: "no filename found"});
+		res.status(204).json({message: "no filename found"});
 	} else {
 		try {
 			const data = await encode(path.resolve('images', filename));
